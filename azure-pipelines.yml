@@ -8,10 +8,10 @@ variables:
 
 stages:
 - stage: 'Build'
-  displayName: 'Build the push'
-  jobs:
+  displayName: 'Build and push'
+  jobs:  
   - job: 'Build'
-    displayName: 'Build Job'
+    displayName: 'Build job'
     pool:
       vmImage: 'ubuntu-20.04'
     steps:
@@ -23,7 +23,7 @@ stages:
         repository: $(webRepository)
         dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
         containerRegistry: 'Container Registry Connection'
-        tags: \
+        tags: |
           $(tag)
 
 - stage: 'Deploy'
